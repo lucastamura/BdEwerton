@@ -22,8 +22,8 @@ SELECT DATABASE();
 -- Tabela pedido_ingrediente
 
 CREATE TABLE pedido_ingrediente(
-    codigo_ingrediente INT NOT NULL,
-    codigo_fornecedor INT NOT NULL,
+    codigo_ingrediente INT NOT NULL,  --FK PK
+    codigo_fornecedor INT NOT NULL,  --FK PK
     quantidade INT NOT NULL,
     valor DECIMAL(10.2) NOT NULL,
 );
@@ -45,86 +45,86 @@ CREATE TABLE ingredientes(
 
 -- Tabela ingredientes-receitas
 CREATE TABLE ingredientes_receitas (
-    id int not null auto_increment,
-    codigo_ingrediente int not null,
-    codigo_receita int not null,
-    quantidade int not null,
-    primary key (id)
+    codigo_ingrediente INT NOT NULL,   --FK PK
+    codigo_receita INT NOT NULL,       --FK PK
+    quantidade INT NOT NULL,
 );
 
 
 
 -- Tabela receitas
-create table receitas(
-    id int not null auto_increment,
-    data_criacao date not null,
-    taxa int not null,
-    preco_custo decimal(10.2),
-    rendimento int not null,
-    primary key (id)
+CREATE TABLE receitas(
+    id INT NOT NULL auto_increment,
+    data_criacao DATE NOT NULL,
+    taxa INT NOT NULL,
+    preco_custo DECIMAL(10.2),
+    rendimento INT NOT NULL,
+
+    PRIMARY KEY (id)
 );
 
 
 
 -- Tabela produtos
-create table produtos(
-    id int not null auto_increment,
-    nome varchar(80) not null,
-    descricao varchar(200) not null,
-    tamanho int not null,
-    taxa_lucro int not null,
-    primary key (id)
+CREATE TABLE produtos(
+    id INT NOT NULL auto_increment,
+    nome VARCHAR(80) NOT NULL,
+    descricao VARCHAR(200) NOT NULL,
+    tamanho INT NOT NULL,
+    taxa_lucro INT NOT NULL,
+    codigo_receita INT NOT NULL,   --FK
+    PRIMARY KEY (id)
 );
 
 
 
 -- Tabela produtos_pedidos
-create table produtos_pedidos(
-    id int not null auto_increment,
-    codigo_Produto int not null,
-    codigo_pedido int not null,
-    quantidade int not null,
-    primary key(id)
+CREATE TABLE produtos_pedidos(
+    codigo_Produto INT NOT NULL,   --FK PK
+    codigo_pedido INT NOT NULL,   --FK PK
+    quantidade INT NOT NULL,
 );
 
-create table pedidos(
-    id int not null auto_increment,
-    data date not null,
-    codigo_cliente int not null,
-    frete int not null,
-    desconto int not null,
-    adicional int,
-    total decimal(10.2) not null,
-    codigo_funcionario int not null,
-    primary key(id)
+
+
+CREATE TABLE pedidos(
+    id INT NOT NULL auto_increment,
+    data DATE NOT NULL,
+    codigo_cliente INT NOT NULL,   --FK 
+    frete INT NOT NULL,
+    desconto INT NOT NULL,
+    adicional INT,
+    total DECIMAL(10.2) NOT NULL,
+    codigo_funcionario INT NOT NULL,   --FK 
+    PRIMARY KEY(id)
 );
 
 
 
 -- Tabela clientes
-create table clientes(
-    id int not null auto_increment,
-    nome varchar(80) not null,
-    cpf int not null,
-    telefone varchar(20) not null,
-    rua  varchar(100) not null,
-    numero varchar(80) not null,
-    complemento varchar(80) not null,
-    primary key(id)
+CREATE TABLE clientes(
+    id INT NOT NULL auto_increment,
+    nome VARCHAR(80) NOT NULL,
+    cpf INT NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    rua  VARCHAR(100) NOT NULL,
+    numero VARCHAR(80) NOT NULL,
+    complemento VARCHAR(80) NOT NULL,
+    PRIMARY KEY(id)
 );
 
 
 
 -- Tabela funcionarios
-create table funcionarios(
-    id int not null auto_increment,
-    nome varchar(80) not null,
-    login varchar(16) not null,
-    senha varchar(16) not null,
-    nivel int not null,
-    cpf varchar(40) not null,
-    rua varchar(100) not null,
-    primary key (id)
+CREATE TABLE funcionarios(
+    id INT NOT NULL auto_increment,
+    nome VARCHAR(80) NOT NULL,
+    login VARCHAR(16) NOT NULL,
+    senha VARCHAR(16) NOT NULL,
+    nivel INT NOT NULL,
+    cpf VARCHAR(40) NOT NULL,
+    rua VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id)
 );
 
 
@@ -178,16 +178,16 @@ CREATE TABLE compra(
 
 
 -- Tabela fornecedores
-create table fornecedores(
-    id int not null auto_increment,
-    razaosocial varchar(80) not null,
-    nome_fantasia varchar(80) not null,
-    cpf_cnpj varchar(14) not null,
-    rg_ie varchar(14) not null,
-    rua varchar(120) not null,
-    numero varchar(80) not null,
-    complemento varchar(80) not null,
-    primary key(id)
+CREATE TABLE fornecedores(
+    id INT NOT NULL auto_increment,
+    razaosocial VARCHAR(80) NOT NULL,
+    nome_fantasia VARCHAR(80) NOT NULL,
+    cpf_cnpj VARCHAR(14) NOT NULL,
+    rg_ie VARCHAR(14) NOT NULL,
+    rua VARCHAR(120) NOT NULL,
+    numero VARCHAR(80) NOT NULL,
+    complemento VARCHAR(80) NOT NULL,
+    PRIMARY KEY(id)
 );
 
 
